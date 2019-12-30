@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuck Norris Quotes in Vue.js</title>
+</head>
+<body>
+    <div id="chuck">
+        <h1>Get a Chuck Norris quote every 10 sec.</h1>
+        <button v-on:click="getQuote">
+            NEXT
+        </button>
+        <h2>{{ quote }}</h2>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#chuck',
+            data: {
+                quote: "Wait for next quote ..."
+            },
+            methods: {
+                getQuote() {
+                    axios
+                        .get('https://api.chucknorris.io/jokes/random')
+                        .then(response => (this.quote = response.data.value))
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
